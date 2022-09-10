@@ -6,7 +6,7 @@ class Solution {
         int diff=0;
         for(int i=1;i<len;i++){
             if(prices[i]<min)min=prices[i];
-            else if(prices[i]-min>diff)diff=prices[i]-min;
+            if(prices[i]-min>diff)diff=prices[i]-min;
         }
 return diff;
     }

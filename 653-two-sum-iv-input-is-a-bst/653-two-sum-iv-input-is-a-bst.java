@@ -26,8 +26,6 @@ class Solution {
         if(root==null)return;
         if(set.contains(root.val))flag=1;
         set.add(k-root.val);
-        
-        System.out.println(root.val);
         rec(root.left,k);
         rec(root.right,k);
     }

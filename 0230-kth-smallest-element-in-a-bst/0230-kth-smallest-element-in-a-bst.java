@@ -18,7 +18,7 @@ class Solution {
     int count=1;
     int result=0;
     public int kthSmallest(TreeNode root, int k) {
-         pq= new PriorityQueue<Integer>(Collections.reverseOrder());
+         //pq= new PriorityQueue<Integer>(Collections.reverseOrder());
          dfs(root,k);
          return result;
          

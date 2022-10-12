@@ -15,18 +15,21 @@
  */
 class Solution {
      PriorityQueue<Integer> pq ;
+    int count=1;
+    int result=0;
     public int kthSmallest(TreeNode root, int k) {
-         pq= new PriorityQueue<Integer>( Collections.reverseOrder());
+         pq= new PriorityQueue<Integer>(Collections.reverseOrder());
          dfs(root,k);
-         return pq.poll();
+         return result;
          
     }
     public void dfs(TreeNode root, int k){
         if(root==null)return;
         dfs(root.left,k);
-        if(pq.size()<k)
-        pq.add(root.val);
-        else return;
+        if(count==k)
+        result=root.val;
+        else if(count>k) return;
+        count++;
         dfs(root.right,k);
         
     }

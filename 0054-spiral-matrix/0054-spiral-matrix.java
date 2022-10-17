@@ -1,47 +1,32 @@
 public class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
-        
         List<Integer> res = new ArrayList<Integer>();
+        if(matrix.length == 0 || matrix[0].length == 0) return res;
         
-        if (matrix.length == 0) {
-            return res;
-        }
+        int top = 0;
+        int bottom = matrix.length-1;
+        int left = 0;
+        int right = matrix[0].length-1;
         
-        int rowBegin = 0;
-        int rowEnd = matrix.length-1;
-        int colBegin = 0;
-        int colEnd = matrix[0].length - 1;
-        
-        while (rowBegin <= rowEnd && colBegin <= colEnd) {
-            // Traverse Right
-            for (int j = colBegin; j <= colEnd; j ++) {
-                res.add(matrix[rowBegin][j]);
-            }
-            rowBegin++;
+        while(true){
+            for(int i = left; i <= right; i++) res.add(matrix[top][i]);
+            top++;
+            if(left > right || top > bottom) break;
             
-            // Traverse Down
-            for (int j = rowBegin; j <= rowEnd; j ++) {
-                res.add(matrix[j][colEnd]);
-            }
-            colEnd--;
+            for(int i = top; i <= bottom; i++) res.add(matrix[i][right]);
+            right--;
+            if(left > right || top > bottom) break;
             
-            if (rowBegin <= rowEnd) {
-                // Traverse Left
-                for (int j = colEnd; j >= colBegin; j --) {
-                    res.add(matrix[rowEnd][j]);
-                }
-            }
-            rowEnd--;
+            for(int i = right; i >= left; i--) res.add(matrix[bottom][i]);
+            bottom--;
+            if(left > right || top > bottom) break;
             
-            if (colBegin <= colEnd) {
-                // Traver Up
-                for (int j = rowEnd; j >= rowBegin; j --) {
-                    res.add(matrix[j][colBegin]);
-                }
-            }
-            colBegin ++;
+            for(int i = bottom; i >= top; i--) res.add(matrix[i][left]);
+            left++;
+            if(left > right || top > bottom) break;
         }
         
         return res;
     }
+    
 }

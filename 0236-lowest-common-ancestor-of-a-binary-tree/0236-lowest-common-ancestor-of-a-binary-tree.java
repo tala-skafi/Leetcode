@@ -17,13 +17,13 @@ class Solution {
             return false;
         }
 
-        int left = this.recurseTree(currentNode.left, p, q) ? 1 : 0;
-        int right = this.recurseTree(currentNode.right, p, q) ? 1 : 0;
+        int left = recurseTree(currentNode.left, p, q) ? 1 : 0;
+        int right = recurseTree(currentNode.right, p, q) ? 1 : 0;
         int mid = (currentNode == p || currentNode == q) ? 1 : 0;
         if (mid + left + right >1) {
-            this.ans = currentNode;
+            ans = currentNode;
         }
-        return (mid + left + right > 0);
+        return (mid==1||left==1||right==1);
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {

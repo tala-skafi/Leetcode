@@ -13,35 +13,27 @@ class Solution {
 //             }
             
 //         }
-//         return false;
-        //[[14,10],[10,8]]k=6
-        //24-18=6
-        
 
-    Map<Integer,Integer> map = new HashMap();
-    
-    
-    // this is for example (-10,10,5,4,... )
-    // -10,10 add up to zero is a multiple of k.
-    map.put(0,-1);
-    
-    int sum=0;
-    for(int i =0;i<nums.length;i++){
-        sum+=nums[i];
-        int rem = sum%k;
-        if(map.containsKey(rem) ){
-            if((i-map.get(rem))>1)
-                return true;
-            else
-                continue;
+        for(int i=1;i<nums.length;i++) {
+            if(nums[i] == 0 && nums[i-1] == 0) return true;
         }
-                
-        map.put(rem,i);
+        for(int i=1;i<nums.length;i++) {
+            nums[i] += nums[i-1];
+            if(nums[i] % k ==0) return true;
+            int j = i;
+            while(j> 1 && nums[i] > k) {
+                if((nums[i] - nums[j-2]) % k ==0) {
+                    return true;
+                }
+                j--;
+            }
+        }
+        return false;
     }
-    return false;
+
 
         
         
         
-    }
+    
 }

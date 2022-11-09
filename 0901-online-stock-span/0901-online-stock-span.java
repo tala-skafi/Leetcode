@@ -13,6 +13,10 @@ ArrayList<Integer>  array;
           array.add(price);  
             return 1;
         }
+        if(array.get(array.size()-1)>price) {
+            array.add(price);
+            return counter;
+        }
        for(int i=array.size()-1;i>=0;i--){
            if(price<array.get(i))break;
            else counter++;

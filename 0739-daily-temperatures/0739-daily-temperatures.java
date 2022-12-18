@@ -1,15 +1,15 @@
 class Solution {
     public int[] dailyTemperatures(int[] arr) {
-     Stack <int[]> stack=new Stack<>();
+     ArrayDeque <int[]> stack=new ArrayDeque<>();
         int [] answer=new int[arr.length];
         for(int i=0;i<arr.length;i++){
 
             while(!stack.isEmpty()&&arr[i]>stack.peek()[0]){
                answer[stack.peek()[1]]=i-stack.peek()[1] ;
-               stack.pop(); 
+               stack.poll(); 
             }
             {
-                stack.add(new int[]{arr[i],i});
+                stack.push(new int[]{arr[i],i});
                 
             }
             

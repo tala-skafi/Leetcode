@@ -8,7 +8,7 @@ class Solution {
             
             currentGaining += gas[i] - cost[i];
             totalGaining += gas[i] - cost[i];
-            System.out.println(totalGaining);
+            // System.out.println(totalGaining);
             
             if (currentGaining < 0) {
                 candidate = i+1;

@@ -4,7 +4,7 @@ class Solution {
         long answer = 0;
         
         for (int i = 0; i < n; ++i) {
-            int minVal = nums[i], maxVal = nums[i];
+            int minVal = Integer.MAX_VALUE, maxVal = Integer.MIN_VALUE;
             for (int j = i; j < n; ++j) {
                 minVal = Math.min(minVal, nums[j]);
                 maxVal = Math.max(maxVal, nums[j]);

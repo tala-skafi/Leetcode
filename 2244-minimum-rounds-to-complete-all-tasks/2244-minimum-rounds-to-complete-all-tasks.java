@@ -7,10 +7,6 @@ class Solution {
         }
          for (Map.Entry <Integer,Integer> set :
              map.entrySet()) {
- 
-            // Printing all elements of a Map
-            System.out.println(set.getKey() + " = "
-                               + set.getValue());
              
              int num=set.getValue();
              if(num==1)return -1;

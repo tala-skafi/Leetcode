@@ -9,9 +9,7 @@ class Solution {
             if(prefixSum<0) prefixSum +=k;
             if(hashMap.containsKey(prefixSum)){
                 
-                    ans = ans+hashMap.get(prefixSum);
-                    System.out.println(hashMap.get(prefixSum));
-                
+                    ans = ans+hashMap.get(prefixSum);                
                 hashMap.put(prefixSum,hashMap.get(prefixSum)+1);
             }else{
                 hashMap.put(prefixSum,1);

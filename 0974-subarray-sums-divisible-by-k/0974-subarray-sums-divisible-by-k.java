@@ -10,7 +10,7 @@ class Solution {
             if(hashMap.containsKey(prefixSum)){
                 
                     ans = ans+hashMap.get(prefixSum);
-                
+                    System.out.println(hashMap.get(prefixSum));
                 
                 hashMap.put(prefixSum,hashMap.get(prefixSum)+1);
             }else{

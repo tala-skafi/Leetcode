@@ -8,15 +8,11 @@ class Solution {
         
         while(left <= right){
             int sum = people[left] + people[right];
-            if(sum <= limit){
-                boatCount++;
-                left++;
-                right--;
-            }
-            else{
+            if(sum <= limit) left++;
                 boatCount++;
                 right--;
-            }
+            
+           
         }
         return boatCount;
     }

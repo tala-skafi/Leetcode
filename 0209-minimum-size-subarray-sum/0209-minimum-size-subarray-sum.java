@@ -1,26 +1,19 @@
 class Solution {
-    public int minSubArrayLen(int S, int[] arr) {
-           int left=0,right=0;
-    int min=Integer.MAX_VALUE;
-    int sum=0;
-    //7, [2, 1, 5, 2, 8]
-    while(right<=arr.length){
-      if(sum>=S){
-        min=Math.min(min,right-left);
-        sum-=arr[left];
-        left++;
-
-      }
-      else{
-        if(right<arr.length){
-          sum+=arr[right];
-          right++;
-        }
-        else break;
-        
-      }
-
+   public int minSubArrayLen(int s, int[] a) {
+  if (a == null || a.length == 0)
+    return 0;
+  
+  int i = 0, j = 0, sum = 0, min = Integer.MAX_VALUE;
+  
+  while (j < a.length) {
+    sum += a[j++];
+    
+    while (sum >= s) {
+      min = Math.min(min, j - i);
+      sum -= a[i++];
     }
-    return min == Integer.MAX_VALUE ? 0 : min; 
-    }
+  }
+  
+  return min == Integer.MAX_VALUE ? 0 : min;
+}
 }

@@ -8,16 +8,9 @@ class Solution {
             if (word.charAt(i)==ch && flag==0){
                  sb.reverse();
                  flag=1;
-                //break;
             }
             i++;
         }
-       
-        // while(i<word.length()){
-        //     sb.append(word.charAt(i));
-
-        //     i++;
-        // }
         return sb.toString();
         
     }

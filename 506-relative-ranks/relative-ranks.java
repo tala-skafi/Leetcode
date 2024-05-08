@@ -1,6 +1,6 @@
 class Solution {
     public String[] findRelativeRanks(int[] score) {
-        int[]bucket=new int[10000000];
+        int[]bucket=new int[1000000];
         for(int i=0;i<score.length;i++){
             bucket[score[i]]=i+1;
 

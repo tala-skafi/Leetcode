@@ -3,12 +3,9 @@ class Solution {
        PriorityQueue<int[]> maxHeap = new PriorityQueue<>(Comparator.comparingDouble(array -> {
             return (double) array[0] / array[1]; 
         }));
-        int count =k;
         for(int i=0;i<arr.length;i++){
             for(int j=i+1;j<arr.length;j++){
                  maxHeap.offer(new int[]{arr[i],arr[j]});
-                
-
             }
         }
         int[] pair=new int[]{0,0};

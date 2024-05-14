@@ -6,14 +6,7 @@ class Solution {
         int count =k;
         for(int i=0;i<arr.length;i++){
             for(int j=i+1;j<arr.length;j++){
-                 if(count>0)maxHeap.offer(new int[]{arr[i],arr[j]});
-                 else{
-                    int[] temp = maxHeap.peek();
-                     if ((double)arr[i]/arr[j] < temp[0]/temp[1]) {
-                maxHeap.poll();
-                maxHeap.offer(new int[]{arr[i],arr[j]});
-            }
-                 }
+                 maxHeap.offer(new int[]{arr[i],arr[j]});
                 
 
             }

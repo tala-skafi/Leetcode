@@ -21,7 +21,6 @@ class Solution {
         int[] pair=new int[]{0,0};
            while (!maxHeap.isEmpty() &&k>0) {
              pair = maxHeap.poll();
-            System.out.println("(" + pair[0] + ", " + pair[1] + ")");
             k--;
         
         }

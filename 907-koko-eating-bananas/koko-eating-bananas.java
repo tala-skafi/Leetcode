@@ -11,17 +11,19 @@ class Solution {
         while(l < r){
             int mid = l + (r - l)/2;
             int hour = calculateH(mid, piles);
-            if(hour>h){
-                l=mid+1;
+            if(hour<=h){
+                 r=mid;
+              
 
 
             }else{
-                r=mid;
+               
+                  l=mid+1;
 
             }
             
         }
-        return r;
+        return l;
 
 
     }

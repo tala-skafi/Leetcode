@@ -1,37 +1,35 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-
 class Solution {
     public int evalRPN(String[] tokens) {
+
         Deque<Integer> stack = new ArrayDeque<>();
+        int op1, op2;
         for (String token : tokens) {
             if (isNumeric(token)) {
                 stack.push(Integer.parseInt(token));
             } else {
-                int op2 = stack.pop();
-                int op1 = stack.pop();
-                switch (token) {
-                    case "-":
-                        stack.push(op1 - op2);
-                        break;
-                    case "+":
-                        stack.push(op1 + op2);
-                        break;
-                    case "*":
+                op2 = stack.pop();
+                op1 = stack.pop();
+                if (token.equals("-")) 
+                    stack.push(op1 - op2);
+            
+                else if (token.equals("+")) 
+                         stack.push(op1 + op2);
+        
+                else if (token.equals("*")) 
                         stack.push(op1 * op2);
-                        break;
-                    case "/":
-                        stack.push(op1 / op2);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid operator: " + token);
+    
+                else if (token.equals("/")) 
+                       stack.push(op1 / op2);
+
                 }
             }
-        }
+
+        
         return stack.pop();
+
     }
 
-    private boolean isNumeric(String str) {
+    public boolean isNumeric(String str) {
         if (str == null) {
             return false;
         }
@@ -41,15 +39,5 @@ class Solution {
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        String[] tokens = {"2", "1", "+", "3", "*"};
-        System.out.println(solution.evalRPN(tokens)); // Output: 9
-
-        // Test with larger input
-        String[] largeTokens = {"2", "3", "+", "4", "*", "5", "-"};
-        System.out.println(solution.evalRPN(largeTokens)); // Output: 15
     }
 }

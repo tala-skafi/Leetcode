@@ -1,7 +1,6 @@
 class LRUCache {
     Map<Integer, Node> map;
     int LIMIT;
-    int counter;
     Node head;
     Node tail;
 
@@ -24,8 +23,6 @@ class LRUCache {
         tail = new Node(0);
         head.next = tail;
         tail.prev = head;
-        counter = 0;
-
     }
 
     public int get(int key) {
@@ -67,7 +64,6 @@ class LRUCache {
             newNode.key=key;
             map.put(key, newNode);
             moveToHead(newNode);
-            counter++;
         }
         if (map.size() > LIMIT) {
             removeLRU();

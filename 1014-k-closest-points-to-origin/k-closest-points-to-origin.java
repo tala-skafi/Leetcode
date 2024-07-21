@@ -1,18 +1,16 @@
 class Solution {
-    public int[][] kClosest(int[][] points, int k) {
-          PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->a[1]==b[1]?a[0]-b[0]:a[1]-b[1]);
-        int l=points.length;
-        int d=0;
-        for(int i=0;i<l;i++){
-           
-              d=points[i][0]*points[i][0] + points[i][1]*points[i][1];
-              pq.add(new int[]{i,d});
+   public int[][] kClosest(int[][] points, int K) {
+    PriorityQueue<int[]> pq = new PriorityQueue<int[]>((p1, p2) -> p2[0] * p2[0] + p2[1] * p2[1] - p1[0] * p1[0] - p1[1] * p1[1]);
+    for (int[] p : points) {
+        pq.offer(p);
+        if (pq.size() > K) {
+            pq.poll();
         }
-            int ans[][] = new int[k][2];
-        for(int i=0; i<k; i++){
-            ans[i] = points[pq.remove()[0]];
-        }
-        return ans;
-            
-        }
+    }
+    int[][] res = new int[K][2];
+    while (K > 0) {
+        res[--K] = pq.poll();
+    }
+    return res;
+}
     }

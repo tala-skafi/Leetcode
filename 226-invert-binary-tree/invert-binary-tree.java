@@ -14,21 +14,19 @@
  * }
  */
 class Solution {
+    TreeNode temp;
     public TreeNode invertTree(TreeNode root) {
-        if(root == null)
-        return null;
-    
-   // tmp for swapping
-    TreeNode tmp = root.left;
-    root.left = root.right;
-    root.right = tmp;
-    
-    // recursion
-    invertTree(root.left);
-    invertTree(root.right);
-   
-    
-    return root;
-
+        helper(root);
+        return root;
+        
+        
+    }
+    public void helper(TreeNode root){
+        if(root==null) return ;
+        temp= root.left;
+        root.left=root.right;
+        root.right=temp;
+        invertTree(root.left);
+        invertTree(root.right);
     }
 }

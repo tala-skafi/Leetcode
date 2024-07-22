@@ -4,7 +4,9 @@ class Solution {
         output=new ArrayList<>();
         Arrays.sort(nums);
         for(int i=0;i<nums.length-2;i++){
+            if(nums[i]>0)break;
            if(i>0 && nums[i]==nums[i-1])continue;
+            System.out.println(nums[i]);
             find(-nums[i], i+1 , nums.length-1, nums);
 
 

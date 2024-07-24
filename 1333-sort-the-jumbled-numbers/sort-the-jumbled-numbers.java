@@ -21,7 +21,6 @@ class Solution {
 
             }
             q.add(new int[]{mapped, nums[i],i});
-            System.out.println("mapped "+mapped+" nums[i] "+nums[i]);
             mapped=0;
             c=1;
             

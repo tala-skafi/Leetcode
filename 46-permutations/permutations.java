@@ -1,25 +1,26 @@
 class Solution {
-    List<List<Integer>> out;
-    List<Integer> temp;
-
     public List<List<Integer>> permute(int[] nums) {
-        out = new ArrayList<>();
-        temp = new ArrayList<>();
-        dfs(nums, temp);
-        return out;
-
+        List<List<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> curList = new ArrayList<>();
+        HashSet<Integer> selected = new HashSet<>();
+        helper(ans, curList, nums, selected);
+        return ans;
     }
 
-    public void dfs(int[] nums, List<Integer> temp) {
-        if (temp.size() == nums.length) {
-            out.add(new ArrayList<>(temp));
+    private void helper(List<List<Integer>> ans, ArrayList<Integer> curList, int[] nums, HashSet<Integer> selected) {
+        if (curList.size() >= nums.length) {
+            ans.add((ArrayList) curList.clone());
             return;
         }
-        for (int i = 0; i < nums.length; i++) {
-            if(temp.contains(nums[i])) continue;
-            temp.add(nums[i]);
-            dfs(nums,temp);
-            temp.remove(temp.size()-1);
+
+        for (int num: nums) {
+            if (!selected.contains(num)) {
+                selected.add(num);
+                curList.add(num);
+                helper(ans, curList, nums, selected);
+                selected.remove(num);
+                curList.remove(curList.size() - 1);
+            }
         }
     }
 }

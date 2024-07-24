@@ -7,11 +7,9 @@ class Solution {
     }
 
     public void helper(int[] nums, int idx, int currentXOR) {
-        if (idx == nums.length) {
-            total += currentXOR;
-            return;
+        total += currentXOR;
+        for (int i = idx; i < nums.length; i++) {
+            helper(nums, i + 1, currentXOR ^ nums[i]);
         }
-        helper(nums, idx + 1, currentXOR ^ nums[idx]);
-        helper(nums, idx + 1, currentXOR);
     }
 }

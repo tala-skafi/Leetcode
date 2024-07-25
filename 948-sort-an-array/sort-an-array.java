@@ -23,6 +23,6 @@ class Solution {
                 tmp[k++] = nums[i++];
             }
         }
-        System.arraycopy(tmp, 0, nums, l, r - l + 1);
+        System.arraycopy(tmp, 0, nums, l, k);
     }
 }

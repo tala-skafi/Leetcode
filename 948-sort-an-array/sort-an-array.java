@@ -22,11 +22,7 @@ class Solution {
             // } else {
             //     tmp[k++] = nums[i++];
             // }
-            if(i > mid) {
-                tmp[k++] = nums[j++];
-            } else if( j > r) {
-                tmp[k++] = nums[i++];
-            }else if (nums[j] > nums[i]) {
+            if( j > r ||i <=mid && nums[j] > nums[i]) {
                 tmp[k++] = nums[i++];
             }else {
                 tmp[k++] = nums[j++];

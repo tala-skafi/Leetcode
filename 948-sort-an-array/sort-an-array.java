@@ -17,10 +17,19 @@ class Solution {
         int[] tmp = new int[r - l + 1];
         int i = l, j = mid + 1, k = 0;
         while (i <= mid || j <= r) {
-            if (i > mid || j <= r && nums[i] > nums[j]) {
+            // if (i > mid || j <= r && nums[i] > nums[j]) {
+            //     tmp[k++] = nums[j++];
+            // } else {
+            //     tmp[k++] = nums[i++];
+            // }
+            if(i > mid) {
                 tmp[k++] = nums[j++];
-            } else {
+            } else if( j > r) {
                 tmp[k++] = nums[i++];
+            }else if (nums[j] > nums[i]) {
+                tmp[k++] = nums[i++];
+            }else {
+                tmp[k++] = nums[j++];
             }
         }
         System.arraycopy(tmp, 0, nums, l, k);

@@ -1,55 +1,53 @@
 class Solution {
-    private static final int CHAR_COUNT = 26;
-    private static final int INF = Integer.MAX_VALUE / 2;
-
     public long minimumCost(String source, String target, char[] original, char[] changed, int[] cost) {
-        int[][] conversionGraph = buildConversionGraph(original, changed, cost);
-        optimizeConversionPaths(conversionGraph);
-        return computeTotalConversionCost(source, target, conversionGraph);
-    }
+        long graph[][] = new long[26][26];
+        for(int i = 0; i < 26; i++) {
+            Arrays.fill(graph[i], -1l);
+        }
+        for(int i = 0; i < cost.length; i++) {
+            int u = original[i] - 'a';
+            int v = changed[i] - 'a';
+            long c = cost[i];
+            if(graph[u][v] == -1) {
+                graph[u][v] = c;
+            }
+            else {
+                graph[u][v] = Math.min(graph[u][v], c);
+            }
+        }
 
-    private int[][] buildConversionGraph(char[] original, char[] changed, int[] cost) {
-        int[][] graph = new int[CHAR_COUNT][CHAR_COUNT];
-        for (int[] row : graph) {
-            Arrays.fill(row, INF);
-        }
-        for (int i = 0; i < CHAR_COUNT; i++) {
-            graph[i][i] = 0;
-        }
-        for (int i = 0; i < cost.length; i++) {
-            int from = original[i] - 'a';
-            int to = changed[i] - 'a';
-            graph[from][to] = Math.min(graph[from][to], cost[i]);
-        }
-        return graph;
-    }
-
-    private void optimizeConversionPaths(int[][] graph) {
-        for (int k = 0; k < CHAR_COUNT; k++) {
-            for (int i = 0; i < CHAR_COUNT; i++) {
-                if (graph[i][k] < INF) {
-                    for (int j = 0; j < CHAR_COUNT; j++) {
-                        if (graph[k][j] < INF) {
-                            graph[i][j] = Math.min(graph[i][j], graph[i][k] + graph[k][j]);
+        for(int k = 0; k < 26; k++) {
+            for(int i = 0; i < 26; i++) {
+                for(int j = 0; j < 26; j++) {
+                    if(graph[i][k] != -1 && graph[k][j] != -1) {
+                        if(graph[i][j] == -1) {
+                            graph[i][j] = graph[i][k] + graph[k][j];
+                        }
+                        else {
+                            graph[i][j] = Math.min(
+                                graph[i][j],
+                                graph[i][k] + graph[k][j]
+                            );
                         }
                     }
                 }
             }
         }
-    }
 
-    private long computeTotalConversionCost(String source, String target, int[][] graph) {
         long totalCost = 0;
-        for (int i = 0; i < source.length(); i++) {
-            int sourceChar = source.charAt(i) - 'a';
-            int targetChar = target.charAt(i) - 'a';
-            if (sourceChar != targetChar) {
-                if (graph[sourceChar][targetChar] == INF) {
-                    return -1L;
+        for(int i = 0; i < source.length(); i++) {
+            int u = source.charAt(i) - 'a';
+            int v = target.charAt(i) - 'a';
+            if(u != v) {
+                if(graph[u][v] != -1) {
+                    totalCost += graph[u][v];
                 }
-                totalCost += graph[sourceChar][targetChar];
+                else {
+                    return -1;
+                }
             }
         }
+
         return totalCost;
     }
 }

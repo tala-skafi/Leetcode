@@ -1,31 +1,39 @@
 class Solution {
-    int count;
-    int [] map;
+    Map<Integer, Integer> memo = new HashMap<>();
+
     public int numDecodings(String s) {
-        map=new int[s.length()];
-        if(s.equals("0"))return 0;
-        count=0;
-        helper(0,s);
-        return count;
-        
-        
+        return recursiveWithMemo(0, s);
     }
-    public void helper(int idx, String s){
-        if(idx==s.length()){
-            count++;
-            return;
+
+    private int recursiveWithMemo(int index, String str) {
+        // Have we already seen this substring?
+        if (memo.containsKey(index)) {
+            return memo.get(index);
         }
-        if(s.charAt(idx)=='0')return;
-        if(map[idx]!=0){
-            count+=map[idx];
-            return;
+
+        // If you reach the end of the string
+        // Return 1 for success.
+        if (index == str.length()) {
+            return 1;
         }
-        helper(idx+1,s);
-        if(idx<s.length()-1 && ( s.charAt(idx)=='1'   ||  s.charAt(idx)=='2'&& s.charAt(idx+1)<'7'))
-        helper(idx+2,s);
-        map[idx]=count;
 
+        // If the string starts with a zero, it can't be decoded
+        if (str.charAt(index) == '0') {
+            return 0;
+        }
 
+        if (index == str.length() - 1) {
+            return 1;
+        }
 
+        int ans = recursiveWithMemo(index + 1, str);
+        if (Integer.parseInt(str.substring(index, index + 2)) <= 26) {
+            ans += recursiveWithMemo(index + 2, str);
+        }
+
+        // Save for memoization
+        memo.put(index, ans);
+
+        return ans;
     }
 }

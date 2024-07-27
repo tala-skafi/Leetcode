@@ -1,44 +1,21 @@
 class Solution {
     public int minSteps(String s, String t) {
-        Map <Character,Integer> map1=new HashMap<>();
-        Map <Character,Integer> map2=new HashMap<>();
-        char one,two;
-        int count=0;
-        for(int i=0;i<s.length();i++){
-            one=s.charAt(i);
-            two=t.charAt(i);
-            map1.put(one,map1.getOrDefault(one,0)+1);
-            map2.put(two,map2.getOrDefault(two,0)+1);
+        int[] map = new int[26];
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
+            map[c1 - 'a']--;
+            map[c2 - 'a']++;
         }
-        for(char c='a';c<='z';c++){
-            if(map1.containsKey(c)&&map2.containsKey(c)){
-                if(map1.get(c)==map2.get(c)){
-                    map1.remove(c);
-                    map2.remove(c);
-
-                }
-                else if(map1.get(c)>map2.get(c)){
-                   map1.put(c,map1.get(c)-map2.get(c));
-                   map2.put(c,0);
-                }
-                else{
-                    map2.put(c,map2.get(c)-map1.get(c));
-                    map1.put(c,0);
-                    
-
-                }
-                
-                
-                
-                
+        
+        int res = 0;
+        for (int i = 0; i < 26; i++) {
+            if (map[i] < 0) {
+                res += map[i]*-1;
             }
         }
-        for(Map.Entry<Character,Integer> set:map2.entrySet()){
-            count+=set.getValue();
-
-        }
-        return count;
         
-        
+        return res;
     }
 }

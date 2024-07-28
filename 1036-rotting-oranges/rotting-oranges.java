@@ -26,13 +26,13 @@ class Solution {
            int x=front[0];
            int y=front[1];
            for(int[] d:dir){
-            int xx=x+d[0];
-            int yy=y+d[1];
+            int newX=x+d[0];
+            int newY=y+d[1];
 
-            if(xx<grid.length && xx>=0 && yy>=0 && yy<grid[0].length && grid[xx][yy]==1){
+            if(newX<grid.length && newX>=0 && newY>=0 && newY<grid[0].length && grid[newX][newY]==1){
                 countFresh++;
-                grid[xx][yy]=2;
-                q.add(new int[]{xx,yy});
+                grid[newX][newY]=2;
+                q.add(new int[]{newX,newY});
             }
             
            }
@@ -47,15 +47,6 @@ class Solution {
            
         }
         if(countFresh!=fresh) return -1;
-        // for(int[] row : grid) {
-        //     for(int cell : row) {
-        //         if(cell == 1) {
-        //             return -1;  // Return -1 if any fresh orange is left
-        //         }
-        //     }
-        // }
-        
-
         return levelCount;
     }
 }

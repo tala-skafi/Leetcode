@@ -10,12 +10,15 @@ class Solution {
 
     private int BFS(int[][] grid){
         int levelCount=0;
+        int fresh=0;
+        int countFresh=0;
         Queue <int[]> q =new LinkedList<>();
         Queue <int[]> p =new LinkedList<>();
         Queue <int[]> level =new LinkedList<>(); 
         for(int i=0;i<grid.length;i++){
             for(int j=0;j<grid[0].length;j++){
                 if(grid[i][j]==2) p.add(new int[]{i,j});
+                else if(grid[i][j]==1)fresh++;
             }
         }
         while(!p.isEmpty()){
@@ -27,6 +30,7 @@ class Solution {
             int yy=y+d[1];
 
             if(xx<grid.length && xx>=0 && yy>=0 && yy<grid[0].length && grid[xx][yy]==1){
+                countFresh++;
                 grid[xx][yy]=2;
                 q.add(new int[]{xx,yy});
             }
@@ -42,13 +46,14 @@ class Solution {
            }
            
         }
-         for(int[] row : grid) {
-            for(int cell : row) {
-                if(cell == 1) {
-                    return -1;  // Return -1 if any fresh orange is left
-                }
-            }
-        }
+        if(countFresh!=fresh) return -1;
+        // for(int[] row : grid) {
+        //     for(int cell : row) {
+        //         if(cell == 1) {
+        //             return -1;  // Return -1 if any fresh orange is left
+        //         }
+        //     }
+        // }
         
 
         return levelCount;

@@ -33,9 +33,12 @@ class Solution {
             
            }
            if(p.isEmpty()){
-            levelCount++;
-            p=q;
-            q=new LinkedList<>();
+            if(!q.isEmpty()){
+                levelCount++;
+                p=q;
+                q=new LinkedList<>();
+            }
+            
            }
            
         }
@@ -48,6 +51,6 @@ class Solution {
         }
         
 
-        return levelCount==0 ? 0:levelCount-1;
+        return levelCount;
     }
 }

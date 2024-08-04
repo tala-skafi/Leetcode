@@ -11,7 +11,7 @@ class Solution {
                 res= e;
             }
             else{
-                parent[p2] = p1; 
+                parent[p1] = p2; 
             }
         }
         return res;

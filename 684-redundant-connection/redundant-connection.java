@@ -3,17 +3,18 @@ class Solution {
          int[] parent = new int[edges.length+1];
         for (int i = 1; i <=edges.length; i++) parent[i] = i;
         int components = edges.length;
+        int[]res=new int[2];
         for (int[] e : edges) {
             int p1 = findParent(parent, e[0]);
             int p2 = findParent(parent, e[1]);
             if (p1 == p2) {
-                return e;
+                res= e;
             }
             else{
                 parent[p2] = p1; 
             }
         }
-        return new int[]{0,0};
+        return res;
        
     }
    

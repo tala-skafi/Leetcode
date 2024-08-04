@@ -1,49 +1,24 @@
 class Solution {
-    Set<Pair<Integer, Integer>> solutions;
-    Set<Integer> visited;
-    Map<Integer, List<Integer>> map;
-
-    public int[] findRedundantConnection(int[][] edges) {
-        int n = edges.length;
-        visited = new HashSet<>();
-        solutions = new HashSet<>();
-        map = new HashMap<>();
+    public  int[] findRedundantConnection(int[][] edges) {
+         int[] parent = new int[edges.length+1];
+        for (int i = 1; i <=edges.length; i++) parent[i] = i;
+        int components = edges.length;
         for (int[] e : edges) {
-            int s = e[0];
-            int d = e[1];
-            if (!map.containsKey(s)) {
-                map.put(s, new ArrayList<>());
+            int p1 = findParent(parent, e[0]);
+            int p2 = findParent(parent, e[1]);
+            if (p1 == p2) {
+                return e;
             }
-            map.get(s).add(d);
-            if (!map.containsKey(d)) {
-                map.put(d, new ArrayList<>());
+            else{
+                parent[p2] = p1; 
             }
-            map.get(d).add(s);
         }
-        for (int i = 1; i <= n; i++) {
-            visited.clear();
-            DFS(i, 0);
-        }
-        for (int i = n - 1; i >= 0; i--) {
-            if (solutions.contains(new Pair(edges[i][0], edges[i][1])))
-                return edges[i];
-        }
-        return new int[] { 0, 0 };
+        return new int[]{0,0};
+       
     }
-
-    private void DFS(int node, int parent) {
-        if (visited.contains(node)) {
-            solutions.add(new Pair(node, parent));
-            return;
-        }
-
-        visited.add(node);
-        List<Integer> neighbours = map.get(node);
-        if (neighbours != null)
-            for (int n : neighbours) {
-                if (n != parent)
-                    DFS(n, node);
-            }
-
+   
+    private int findParent(int[] parent, int i) {
+        if (i == parent[i]) return i;
+        return parent[i] = findParent(parent, parent[i]); // Path compression
     }
 }

@@ -8,7 +8,8 @@ class Solution {
         for (int num: nums) {
             if (!storage.contains(num - 1)) {
                 int sequenceCount = 1;
-                while (storage.contains(num + sequenceCount)) {
+                int temp=num;
+                while (storage.contains(++temp)) {
                     sequenceCount++;
                 }
                 sequenceMax = Math.max(sequenceCount, sequenceMax);

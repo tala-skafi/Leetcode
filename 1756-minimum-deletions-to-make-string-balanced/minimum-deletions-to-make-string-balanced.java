@@ -9,12 +9,8 @@ class Solution {
             if(s.charAt(i)=='a')
             aCount++;
         }
-        // for(int i=0;i<a.length;i++){
-        //     System.out.print(a[i]);
-        // }
         int i=0;
         for(char c:s.toCharArray()){
-           
             res=Math.min(res, bCount+a[i]);
              if(c=='b')bCount++;
             i++;

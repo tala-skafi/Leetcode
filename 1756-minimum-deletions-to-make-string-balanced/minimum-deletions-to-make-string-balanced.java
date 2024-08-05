@@ -1,14 +1,26 @@
 class Solution {
     public int minimumDeletions(String s) {
-        int res = 0, count = 0;
-        for (char c : s.toCharArray()){
-            if (c == 'b')
-                count++;
-            else if (count != 0){
-                res++;
-                count--;
-            }
+        int len=s.length();
+        int res=len;
+        int [] a=new int[len];
+        int aCount=0,bCount=0;
+        for(int i=len-1;i>=0;i--){
+            a[i]=aCount;
+            if(s.charAt(i)=='a')
+            aCount++;
         }
+        // for(int i=0;i<a.length;i++){
+        //     System.out.print(a[i]);
+        // }
+        int i=0;
+        for(char c:s.toCharArray()){
+           
+            res=Math.min(res, bCount+a[i]);
+             if(c=='b')bCount++;
+            i++;
+        }
+
+
         return res;
     }
 }

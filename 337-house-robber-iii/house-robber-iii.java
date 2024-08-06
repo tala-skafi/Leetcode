@@ -34,17 +34,14 @@ class Solution {
         }
         if(!flag){
             res= Math.max(root.val+DFS(root.right,true)+DFS(root.left,true),DFS(root.right,false)+DFS(root.left,false));
+            mapfalse.put(root, res);
         }
          
          else{
             res= DFS(root.right,false)+DFS(root.left,false);
-         }
-           if(flag){
             maptrue.put(root, res);
-            }
-            else{
-                 mapfalse.put(root, res);
-            }
+         }
+        
             return res;
          
     }

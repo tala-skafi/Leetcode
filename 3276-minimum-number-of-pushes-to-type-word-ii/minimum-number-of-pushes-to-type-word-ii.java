@@ -4,17 +4,13 @@ class Solution {
         for (char c : word.toCharArray()) {
             letterFrequency[c - 'a']++;
         }
-        
-        Integer[] sortedFreq = new Integer[26];
-        for (int i = 0; i < 26; i++) {
-            sortedFreq[i] = letterFrequency[i];
-        }
-        Arrays.sort(sortedFreq, Collections.reverseOrder());
+
+        Arrays.sort(letterFrequency);
         
         int totalPresses = 0;
         for (int i = 0; i < 26; i++) {
-            if (sortedFreq[i] == 0) break;
-            totalPresses += (i / 8 + 1) * sortedFreq[i];
+
+            totalPresses += (i / 8 + 1) * letterFrequency[26 - i - 1];
         }
         
         return totalPresses;

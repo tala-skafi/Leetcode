@@ -1,28 +1,14 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
-    private Map<Integer, Integer> memo;
-
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
-        memo = new HashMap<>();
-        return DFS(nums, 0);
-    }
-
-    private int DFS(int[] nums, int i) {
-        if (i >= nums.length) return 0;
-        if (memo.containsKey(i)) return memo.get(i);
-
-        // Take the current house and move to i + 2
-        int take = nums[i] + DFS(nums, i + 2);
-        // Skip the current house and move to i + 1
-        int skip = DFS(nums, i + 1);
-
-        // Max value by either taking or skipping the current house
-        int result = Math.max(take, skip);
-        memo.put(i, result);  // Store the result in memo
-
-        return result;
+        if (nums.length == 1) return nums[0];
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < n; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+        }
+        return dp[n - 1];
     }
 }

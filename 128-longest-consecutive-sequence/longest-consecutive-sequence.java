@@ -5,7 +5,7 @@ class Solution {
             storage.add(num);
         }
         int sequenceMax = 0;
-        for (int num: nums) {
+        for (int num: storage) {
             if (!storage.contains(num - 1)) {
                 int sequenceCount = 1;
                 while (storage.contains(num + sequenceCount)) {

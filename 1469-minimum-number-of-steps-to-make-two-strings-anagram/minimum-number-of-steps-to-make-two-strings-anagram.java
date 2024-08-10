@@ -12,7 +12,7 @@ class Solution {
         int res = 0;
         for (int i = 0; i < 26; i++) {
             if (map[i] > 0) {
-                res += map[i]*1;
+                res += map[i];
             }
         }
         

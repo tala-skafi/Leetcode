@@ -13,7 +13,7 @@ class Solution {
                 }
                 sequenceMax = Math.max(sequenceCount, sequenceMax);
             }
-            // if(sequenceMax > nums.length/2) break;
+            if(sequenceMax > nums.length/2) break;
         }
         return sequenceMax;
     }
